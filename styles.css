@@ -1,0 +1,186 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Space Grotesk", sans-serif;
+  background: linear-gradient(120deg, #090013, #1a0035, #0c001d);
+  background-attachment: fixed;
+  color: #f7f3ff;
+  padding: 60px 80px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+/* CONTAINER DA ESQUERDA (ESTILO POLAR DEV) */
+.container {
+  max-width: 620px;
+}
+
+/* TÍTULOS E TEXTO */
+.eyebrow {
+  color: #bda3ff;
+  font-size: 1rem;
+  margin-bottom: 22px;
+}
+
+.title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 28px;
+}
+
+.paragraph {
+  color: #d2c3ff;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin-bottom: 22px;
+}
+
+/* SEÇÃO DE TECNOLOGIAS */
+.tech-section {
+  margin-top: 40px;
+}
+
+.tech-title {
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  margin-bottom: 16px;
+  color: #d8c8ff;
+}
+
+.tech-icons {
+  display: flex;
+  gap: 14px;
+}
+
+/* ICONES */
+.tech-icon {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.05);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: default;
+  transition: 0.2s;
+}
+
+.tech-icon i {
+  font-size: 1.5rem;
+  color: #f4e8ff;
+}
+
+.tech-icon:hover {
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* TOOLTIP */
+.tech-icon::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: -36px;
+  left: 50%;
+  transform: translateX(-50%) translateY(6px);
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(20, 5, 40, 0.92);
+  color: #e9dcff;
+  font-size: 0.75rem;
+  opacity: 0;
+  transition: 0.18s ease;
+  pointer-events: none;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.tech-icon:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0px);
+}
+
+.contact-section {
+  margin-top: 50px;
+}
+
+.contact-title {
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: #d8c8ff;
+  margin-bottom: 14px;
+}
+
+.contact-list {
+  list-style: none;
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+/* PÍLULA DE CONTATO */
+.contact-chip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  color: #e6d7ff;
+  text-decoration: none;
+  font-size: 0.95rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transition: 0.18s ease;
+  overflow: hidden; /* 🔧 garante que nada vaza do chip */
+}
+
+/* brilho interno */
+.contact-chip::before {
+  content: "";
+  position: absolute;
+  inset: -1px; /* cobre todo o chip */
+  border-radius: inherit; /* 🔧 deixa o brilho seguir o formato arredondado */
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255, 255, 255, 0.5),
+    transparent
+  );
+  opacity: 0;
+  transform: translateX(-120%);
+  transition: 0.35s ease;
+}
+
+/* HOVER */
+.contact-chip:hover {
+  background: #ffffff;
+  color: #1a0035;
+  transform: translateY(-3px);
+  border-color: transparent;
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.6);
+}
+
+.contact-chip:hover::before {
+  opacity: 1;
+  transform: translateX(120%);
+}
+
+/* RESPONSIVO */
+@media (max-width: 700px) {
+  body {
+    padding: 40px 20px;
+  }
+
+  .title {
+    font-size: 2.2rem;
+  }
+}
