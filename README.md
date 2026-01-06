@@ -1,4 +1,4 @@
-# 💜 Front-End Portfolio
+# Front-End Portfolio
 
 Projeto de uma interface web no estilo **portfolio pessoal**, desenvolvido com **HTML e CSS**, com foco em **UI/UX Design**, identidade visual moderna e experiência do usuário.
 
@@ -45,4 +45,4 @@ Interface com estética **dark**, tipografia moderna, bom uso de espaçamento e 
 
 ```bash
 ├── index.html
-├── style.css
+├── styles.css
