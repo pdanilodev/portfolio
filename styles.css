@@ -5,24 +5,83 @@
   box-sizing: border-box;
 }
 
+/* =========================
+   FUNDO FUTURISTA VERDE
+   ========================= */
 body {
   font-family: "Space Grotesk", sans-serif;
-  background: linear-gradient(120deg, #090013, #1a0035, #0c001d);
+
+  /* camadas: brilhos + gradiente base */
+  background: radial-gradient(
+      1200px 600px at 10% 10%,
+      rgba(0, 255, 170, 0.12),
+      transparent 60%
+    ),
+    radial-gradient(
+      900px 520px at 80% 20%,
+      rgba(0, 180, 120, 0.08),
+      transparent 60%
+    ),
+    radial-gradient(
+      900px 520px at 60% 90%,
+      rgba(0, 255, 170, 0.06),
+      transparent 60%
+    ),
+    linear-gradient(120deg, #020d08, #041f16, #02130d);
+
   background-attachment: fixed;
-  color: #f7f3ff;
+  color: #eafff6;
   padding: 60px 80px;
   display: flex;
   justify-content: flex-start;
+  min-height: 100vh;
 }
 
-/* CONTAINER DA ESQUERDA (ESTILO POLAR DEV) */
+/* GRID/TEXTURA FUTURISTA */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+
+  /* grid + leve variação para dar sensação tech */
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.015) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    radial-gradient(
+      800px 500px at 50% 0%,
+      rgba(0, 255, 170, 0.06),
+      transparent 60%
+    );
+
+  background-size: 36px 36px, 36px 36px, auto;
+  opacity: 0.42;
+  mix-blend-mode: overlay;
+}
+
+/* RUÍDO (noise) SUPER SUAVE */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.06;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+}
+
+/* CONTAINER DA ESQUERDA */
 .container {
   max-width: 620px;
+  position: relative; /* garante texto acima da textura */
+  z-index: 1;
 }
 
 /* TÍTULOS E TEXTO */
 .eyebrow {
-  color: #bda3ff;
+  color: #7cffc4;
   font-size: 1rem;
   margin-bottom: 22px;
 }
@@ -34,7 +93,7 @@ body {
 }
 
 .paragraph {
-  color: #d2c3ff;
+  color: #c6f5e2;
   font-size: 1.1rem;
   line-height: 1.7;
   margin-bottom: 22px;
@@ -51,7 +110,7 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.14em;
   margin-bottom: 16px;
-  color: #d8c8ff;
+  color: #8affd1;
 }
 
 .tech-icons {
@@ -65,24 +124,27 @@ body {
   width: 48px;
   height: 48px;
   border-radius: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(234, 255, 246, 0.14);
+  background: rgba(234, 255, 246, 0.05);
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: default;
   transition: 0.2s;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .tech-icon i {
   font-size: 1.5rem;
-  color: #f4e8ff;
+  color: #eafff6;
 }
 
 .tech-icon:hover {
   transform: translateY(-4px);
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(234, 255, 246, 0.1);
+  border-color: rgba(124, 255, 196, 0.55);
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.45);
 }
 
 /* TOOLTIP */
@@ -94,13 +156,16 @@ body {
   transform: translateX(-50%) translateY(6px);
   padding: 4px 10px;
   border-radius: 999px;
-  background: rgba(20, 5, 40, 0.92);
-  color: #e9dcff;
+
+  background: rgba(2, 19, 13, 0.92);
+  color: #eafff6;
   font-size: 0.75rem;
+
   opacity: 0;
   transition: 0.18s ease;
   pointer-events: none;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+
+  border: 1px solid rgba(234, 255, 246, 0.12);
 }
 
 .tech-icon:hover::after {
@@ -108,6 +173,7 @@ body {
   transform: translateX(-50%) translateY(0px);
 }
 
+/* LISTA CONTATOS */
 .contact-list {
   list-style: none;
   margin-top: 20px;
@@ -120,8 +186,8 @@ body {
 .icon-svg {
   width: 18px;
   height: 18px;
-  filter: invert(100%); /* deixa branco automaticamente */
-  opacity: 0.85;
+  filter: invert(100%);
+  opacity: 0.88;
   margin-right: 8px;
 }
 
@@ -138,30 +204,35 @@ body {
   align-items: center;
   padding: 8px 16px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.06);
-  color: #e6d7ff;
+
+  background: rgba(234, 255, 246, 0.06);
+  color: #eafff6;
   text-decoration: none;
   font-size: 0.95rem;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  border: 1px solid rgba(234, 255, 246, 0.12);
   transition: 0.18s ease;
   overflow: hidden;
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 /* HOVER */
 .contact-chip:hover {
-  background: #ffffff;
-  color: #1a0035;
+  background: #eafff6;
+  color: #041f16;
   transform: translateY(-3px);
   border-color: transparent;
   box-shadow: 0 14px 32px rgba(0, 0, 0, 0.6);
 }
 
 .contact-chip:hover .icon-svg {
-  filter: invert(0%); /* ícones ficam escuros no hover */
+  filter: invert(0%);
 }
 
 .contact-chip:hover i {
-  color: #1a0035;
+  color: #041f16;
 }
 
 /* BRILHO */
@@ -170,12 +241,14 @@ body {
   position: absolute;
   inset: -1px;
   border-radius: inherit;
+
   background: linear-gradient(
     120deg,
     transparent,
-    rgba(255, 255, 255, 0.5),
+    rgba(234, 255, 246, 0.55),
     transparent
   );
+
   opacity: 0;
   transform: translateX(-120%);
   transition: 0.35s ease;
@@ -186,14 +259,15 @@ body {
   transform: translateX(120%);
 }
 
+/* TEXTO COM BRILHO VERDE */
 .shine-text {
   background: linear-gradient(
     to right,
-    #ffffff 0%,
-    #d4baff 20%,
-    #ffffff 40%,
-    #bb9dff 60%,
-    #ffffff 80%
+    #eafff6 0%,
+    #7cffc4 20%,
+    #eafff6 40%,
+    #00ffb2 60%,
+    #eafff6 80%
   );
 
   background-size: 200%;
